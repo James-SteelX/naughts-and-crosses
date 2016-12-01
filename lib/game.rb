@@ -63,7 +63,7 @@ class Game
   end
 
   def display_board
-  puts "    ---1----2----3-\n
+  puts "  ---1----2----3-\n
   1#{@row_one} \n
   2#{@row_two}\n
   3#{@row_three}\n
