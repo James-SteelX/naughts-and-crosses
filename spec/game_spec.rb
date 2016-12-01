@@ -69,7 +69,7 @@ describe Game do
         expect{ game.play(3, 1) }.to raise_error "X wins!"
       end
 
-      it 'recoginises a diagnal win' do
+      it 'recoginises a diagonal win' do
         expect{ game.play(3, 3) }.to raise_error "X wins!"
       end
     end
