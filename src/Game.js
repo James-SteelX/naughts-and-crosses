@@ -10,6 +10,7 @@ function Game() {
 Game.prototype.makeMove = function (row, column) {
   this.validColumn(column);
   var rowNum = this.rowSelection(row);
+  this.filledSpace(rowNum, column);
   rowNum[column -1] = this.turn[0];
   this.gameOver();
   this.switchTurns();
@@ -24,6 +25,12 @@ Game.prototype.rowSelection = function (row) {
     return this.row_three;
   } else {
     throw new Error('This selection is invalid!');
+  }
+};
+
+Game.prototype.filledSpace = function (row, column) {
+  if (row[column -1] !== "-"){
+    throw new Error('This space is already taken!');
   }
 };
 

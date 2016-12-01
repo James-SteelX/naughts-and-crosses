@@ -16,8 +16,8 @@ describe('Game', function(){
 
   it('Changes the board if its a valid move', function(){
     game.makeMove(1, 1);
-    expect(game.row_one[0]).toBe('X')
-  })
+    expect(game.row_one[0]).toBe('X');
+  });
 
   it('Doesnt let player select invalid row', function(){
     expect(function() { game.makeMove(5, 1); }).toThrowError('This selection is invalid!');
@@ -27,11 +27,26 @@ describe('Game', function(){
     expect(function() { game.makeMove(2, 5); }).toThrowError('This selection is invalid!');
   });
 
+  it('Doesnt let player make move on taken space', function(){
+    game.makeMove(1, 1);
+    expect(function() {game.makeMove(1, 1); }).toThrowError('This space is already taken!');
+  })
+
+  it('Doesnt let player make move on taken space but gives them another turn', function(){
+    game.makeMove(1, 1);
+    expect(function() {game.makeMove(1, 1); }).toThrowError('This space is already taken!');
+    game.makeMove(1, 2);
+    expect(game.row_one[1]).toBe('O');
+  })
+
   it('Swaps turns after play has moved', function(){
     game.makeMove(1, 1);
     game.makeMove(1, 2);
     expect(game.row_one[1]).toBe('O')
   });
+
+
+
   describe('Game over, no winner', function(){
 
    beforeEach(function(){
