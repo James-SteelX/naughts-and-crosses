@@ -28,5 +28,18 @@ describe Game do
       game.play(1, 2)
       expect(game.row_one[1]).to eq 'O'
     end
+
+    it 'wont allow you to use a row not on the board' do
+      expect{ game.play(4, 1) }.to raise_error "This row doesn't exist!"
+    end
+
+    it 'wont allow you to use a column not on the board' do
+      expect{ game.play(1, 4) }.to raise_error "This column doesn't exist!"
+    end
+
+    it 'wont allow you to take and already filled space' do
+      game.play(1, 1)
+      expect{ game.play(1, 1) }.to raise_error "This space is filled!"
+    end
   end
 end
