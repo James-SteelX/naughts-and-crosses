@@ -34,7 +34,7 @@ class Game
 
   def winner?
     turn = @turn.first.to_s
-   if @row_one.all? {|col| col == turn } || @row_two.all? {|col| col == turn } || @row_three.all? {|col| col == turn }
+   if @row_one.all? {|row| row == turn } || @row_two.all? {|row| row == turn } || @row_three.all? {|row| row == turn }
      raise "#{@turn.first.to_s} wins!"
    elsif @row_one[0] == turn && @row_two[0] == turn && @row_three[0] == turn
      raise "#{@turn.first.to_s} wins!"
