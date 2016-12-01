@@ -58,11 +58,19 @@ describe Game do
     context 'Game over, winner!' do
       before do
         game.row_one =  ['X', '-', 'X']
-        game.row_two =  ['O', '-', 'O']
+        game.row_two =  ['X', 'X', 'O']
         game.row_three = ['-', '-', '-']
       end
-      it 'tells user who won' do
+      it 'recoginises a row win' do
         expect{ game.play(1, 2) }.to raise_error "X wins!"
+      end
+
+      it 'recoginises a column win' do
+        expect{ game.play(3, 1) }.to raise_error "X wins!"
+      end
+
+      it 'recoginises a diagnal win' do
+        expect{ game.play(3, 3) }.to raise_error "X wins!"
       end
     end
   end

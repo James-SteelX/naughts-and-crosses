@@ -1,7 +1,7 @@
 class Game
   #this is only an accesor for testing, I need to work out a better way to test though.
-  attr_accessor :row_one, :row_two, :row_three, :turn
-
+  attr_accessor :row_one, :row_two, :row_three
+  attr_reader :turn
   def initialize
    @row_one =   ['-', '-', '-']
    @row_two =   ['-', '-', '-']
@@ -12,7 +12,6 @@ class Game
   def play(num, column)
    row_num = num_to_row(num)
    valid_move?(row_num, column)
-   row_num[column -1] = @turn.first.to_s
    game_over?
    winner?
    switch_player
@@ -26,6 +25,7 @@ class Game
    raise "This row doesn't exist!" if !row
    raise "This column doesn't exist!" if column > 3
    raise "This space is filled!" if row[column -1] != '-'
+   row[column -1] = @turn.first.to_s
   end
 
   def game_over?
