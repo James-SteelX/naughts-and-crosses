@@ -8,6 +8,7 @@ function Game() {
 }
 
 Game.prototype.makeMove = function (row, column) {
+  this.validColumn(column);
   var rowNum = this.rowSelection(row);
   rowNum[column -1] = this.turn[0];
   this.gameOver();
@@ -22,6 +23,12 @@ Game.prototype.rowSelection = function (row) {
   } else if (row == 3) {
     return this.row_three;
   } else {
+    throw new Error('This selection is invalid!');
+  }
+};
+
+Game.prototype.validColumn = function (column) {
+  if (column > 3) {
     throw new Error('This selection is invalid!');
   }
 };

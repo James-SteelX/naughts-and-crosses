@@ -19,8 +19,12 @@ describe('Game', function(){
     expect(game.row_one[0]).toBe('X')
   })
 
-  it('Doesnt let player make invalid move', function(){
+  it('Doesnt let player select invalid row', function(){
     expect(function() { game.makeMove(5, 1); }).toThrowError('This selection is invalid!');
+  });
+
+  it('Doesnt let player select invalid column', function(){
+    expect(function() { game.makeMove(2, 5); }).toThrowError('This selection is invalid!');
   });
 
   it('Swaps turns after play has moved', function(){
