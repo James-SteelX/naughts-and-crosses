@@ -54,5 +54,16 @@ describe Game do
         expect{ game.play(3, 3) }.to raise_error "Game Over!"
       end
     end
+
+    context 'Game over, winner!' do
+      before do
+        game.row_one =  ['X', '-', 'X']
+        game.row_two =  ['O', '-', 'O']
+        game.row_three = ['-', '-', '-']
+      end
+      it 'tells user who won' do
+        expect{ game.play(1, 2) }.to raise_error "X wins!"
+      end
+    end
   end
 end

@@ -14,7 +14,9 @@ class Game
    valid_move?(row_num, column)
    row_num[column -1] = @turn.first.to_s
    game_over?
+   winner?
    switch_player
+   display_board
   end
 
 
@@ -30,6 +32,25 @@ class Game
    raise "Game Over!" if !row_one.include?('-') && !row_two.include?('-') && !row_three.include?('-')
   end
 
+  def winner?
+    turn = @turn.first.to_s
+   if @row_one.all? {|col| col == turn } || @row_two.all? {|col| col == turn } || @row_three.all? {|col| col == turn }
+     raise "#{@turn.first.to_s} wins!"
+   elsif @row_one[0] == turn && @row_two[0] == turn && @row_three[0] == turn
+     raise "#{@turn.first.to_s} wins!"
+   elsif @row_one[1] == turn && @row_two[1] == turn && @row_three[1] == turn
+     raise "#{@turn.first.to_s} wins!"
+   elsif @row_one[2] == turn && @row_two[2] == turn && @row_three[2] == turn
+     raise "#{@turn.first.to_s} wins!"
+   elsif @row_one[0] == turn && @row_two[1] == turn && @row_three[2] == turn
+     raise "#{@turn.first.to_s} wins!"
+   elsif @row_one[2] == turn && @row_two[1] == turn && @row_three[0] == turn
+     raise "#{@turn.first.to_s} wins!"
+   else
+     return
+   end
+  end
+
   def switch_player
    @turn.reverse!
   end
@@ -40,4 +61,13 @@ class Game
              3 => @row_three}
     hash[num]
   end
+
+  def display_board
+  puts "    ---1----2----3-\n
+  1#{@row_one} \n
+  2#{@row_two}\n
+  3#{@row_three}\n
+  ---------------"
+  puts "   It's #{@turn.first.to_s}'s go next!\n"
+end
 end
