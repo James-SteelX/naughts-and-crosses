@@ -10,16 +10,30 @@ function Game() {
 Game.prototype.makeMove = function (row, column) {
   var rowNum = this.rowSelection(row);
   rowNum[column -1] = this.turn[0];
+  this.gameOver();
+  this.switchTurns();
 };
 
 Game.prototype.rowSelection = function (row) {
   if (row == 1) {
     return this.row_one;
   } else if (row == 2) {
-    this.row_two;
+    return this.row_two;
   } else if (row == 3) {
-    this.row_three;
+    return this.row_three;
   } else {
     throw new Error('This selection is invalid!');
   }
+};
+
+Game.prototype.switchTurns = function () {
+  this.turn.reverse();
+};
+
+Game.prototype.gameOver = function () {
+ if (this.row_one.includes("-") && this.row_two.includes("-") && this.row_three.includes("-")){
+   return;
+ } else {
+   throw new Error('Game over!');
+ }
 };
